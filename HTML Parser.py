@@ -7,6 +7,9 @@ from bs4 import BeautifulSoup
 from urlparse import urljoin
 import sys
 import urllib2
+from protego import Protego
+import requests
+from pdb import set_trace
 
 
 #url = raw_input("Input the url to start the crawling (example: http://www.google.com ):")
@@ -29,6 +32,11 @@ def bfs_crawler(url):
         # Complete relative URLs and strip trailing slash
         complete_url = urljoin(url, link["href"]).rstrip('/')
 
+        if robot_txt_allowed(link["href"]) is True:
+            print ("this link is allowed", link)
+        else:
+            print("this link is not allowed",link)
+
         # Check if the URL already exists in the queue
         for j in queue:
             if j == complete_url:
@@ -47,6 +55,13 @@ def bfs_crawler(url):
     # Recursive call to crawl until the queue is populated with 100 URLs
     bfs_crawler(current)
 
+def robot_txt_allowed(link):
+    try:
+        r = requests.get(str(link)+"/robots.txt")
+        rp = Protego.parse(r.text)
+        return rp.can_fetch(link,"*")
+    except:
+        return False
 
 def main():
 

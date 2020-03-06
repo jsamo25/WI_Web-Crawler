@@ -48,12 +48,14 @@ def bfs_crawler(url):
     bfs_crawler(current)
 
 
+def main():
 
-bfs_crawler(url)
+    bfs_crawler(url)
+    # Print queue
+    for i in queue:
+        print i
+    for v in visited_links:
+        print v
 
-# Print queue
-for i in queue:
-    print i
-
-for v in visited_links:
-    print v
+if __name__ == "__main__":
+    main()

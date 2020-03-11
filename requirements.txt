@@ -1,12 +1,10 @@
-backports.functools-lru-cache==1.6.1
 beautifulsoup4==4.8.2
 bs4==0.0.1
 certifi==2019.11.28
 chardet==3.0.4
 idna==2.9
-Protego==0.1.16
+lxml==4.5.0
 requests==2.23.0
 simplejson==3.17.0
-six==1.14.0
-soupsieve==1.9.5
+soupsieve==2.0
 urllib3==1.25.8

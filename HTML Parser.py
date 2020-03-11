@@ -11,7 +11,7 @@ def check_robot_txt(url):
     rp.read()
     return rp.can_fetch("*",url)
 
-def crawler(url):
+def web_crawler(url):
     link_list = []
     url_file = urllib.request.urlopen(url)
     url_content = url_file.read()
@@ -30,12 +30,12 @@ def BrFS_Search(url, max_count):
         url = queue.popleft() #extract one element from the left
 
         if url in visited:
-            continue
+            continue #skip url
         if check_robot_txt(url) is not True:
-            continue
+            continue #skip url
 
         visited.add(url)
-        queue.extend(crawler(url))
+        queue.extend(web_crawler(url))
         print("[%s] %s"%(count,url))
         count += 1
 

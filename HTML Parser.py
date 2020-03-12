@@ -9,6 +9,15 @@ from bs4 import BeautifulSoup
 
 rp = robotparser.RobotFileParser()
 
+def main():
+    url = "http://" + input("input a URL (example: www.upf.com) ---> ")
+    if check_robot_txt(url) is True:
+        max_count = int(input("how many links would you like to include on the search?: "))
+        BrFS_crawler(url,max_count)
+    else:
+        print("url not allowed in /robots.txt...")
+
+
 def check_robot_txt(url):
     rp.set_url((url + "/robots.txt"))
     rp.read()
@@ -50,7 +59,4 @@ def BrFS_crawler(url, max_count):
 
 
 if __name__ == '__main__':
-    url = "http://" + input("input a URL (example: www.upf.com) ---> ")
-    max_count= int(input("how many links would you like to include on the search?: "))
-    check_robot_txt(url)
-    BrFS_crawler(url,max_count)
+    main()

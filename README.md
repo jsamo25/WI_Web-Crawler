@@ -1,7 +1,8 @@
 #Web Intelligence class
 ###Web Crawler
 
-##### @jsamo25
-##### @danilevk
-
 run: `pip install requirements.txt`
+
+Uses a Breath First Search Approach and stores html files in /html_files/
+
+

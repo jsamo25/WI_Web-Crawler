@@ -17,7 +17,6 @@ def main():
     else:
         print("url not allowed in /robots.txt...")
 
-
 def check_robot_txt(url):
     rp.set_url((url + "/robots.txt"))
     rp.read()
@@ -49,6 +48,9 @@ def BrFS_crawler(url, max_count):
         queue.extend(explore_links(url))
         print("[%s] %s"%(count,url))
         r = requests.get(url)
+
+        if not os.path.exists("html_files"):
+            os.makedirs("html_files")
         try:
             with open("html_files/file [%s].html"%(count),"w") as file:
                 file.write(r.text)
@@ -56,6 +58,7 @@ def BrFS_crawler(url, max_count):
         except:
             count +=1
             continue
+
 
 
 if __name__ == '__main__':
